@@ -11,7 +11,7 @@
 
     <groupId>tn.esprit</groupId>
     <artifactId>eventsProject</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>eventsProject</name>
     <description>Events Project for managing student services</description>
 
