@@ -3,11 +3,11 @@ version: "3.8"
 services:
   backend-spring:
     container_name: backend-spring
-    image: docker.io/esprit11/tpfoyer-app:latest
+    image: docker.io/bedouimohamed/bedoui:latest
     build:
       context: src
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://EventDB:3306/tpFoyer17?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/EventDB?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: ""
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
@@ -26,7 +26,7 @@ services:
     restart: unless-stopped
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-      MYSQL_DATABASE: tpFoyer17
+      MYSQL_DATABASE: EventDB
     ports:
       - "3306:3306"
     volumes:
