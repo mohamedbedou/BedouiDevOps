@@ -24,4 +24,19 @@ public class Logistics implements Serializable {
     float prixUnit;
     int quantite;
 
+    public String getDescription() {
+        return this.description;
+    }
+
+    public boolean isReserve() {
+        return reserve;
+    }
+
+    public float getPrixUnit() {
+        return prixUnit;
+    }
+
+    public int getQuantite() {
+        return this.quantite;
+    }
 }
