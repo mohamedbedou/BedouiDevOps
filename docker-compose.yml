@@ -5,7 +5,7 @@ services:
     container_name: backend-spring
     image: docker.io/esprit11/tpfoyer-app:latest
     build:
-      context: .
+      context: src
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://EventDB:3306/tpFoyer17?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
       SPRING_DATASOURCE_USERNAME: root
