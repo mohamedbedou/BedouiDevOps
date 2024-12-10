@@ -19,7 +19,6 @@ services:
     networks:
       - mynetwork
 
-
   db:
     container_name: bedouidb
     image: mysql:8.0
@@ -33,7 +32,6 @@ services:
       - mysql-data:/var/lib/mysql
     networks:
       - mynetwork
-
 
   prometheus:
     image: prom/prometheus:latest
@@ -54,13 +52,10 @@ services:
       - "3000:3000"
     volumes:
       - grafana:/var/lib/grafana
-
-
     depends_on:
       - prometheus
-
-
-
+    networks:
+      - mynetwork
 
 volumes:
   mysql-data:
