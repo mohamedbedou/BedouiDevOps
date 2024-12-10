@@ -7,21 +7,21 @@ services:
     build:
       context: src
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/EventDB?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+      SPRING_DATASOURCE_URL: jdbc:mysql://bedouidb:3306/eventsProject?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: ""
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
     ports:
       - "8087:8087"  # Port mapping for backend Spring Boot
     depends_on:
-      - db
+      - bedouidb
     restart: on-failure
     networks:
       - mynetwork
 
 
   db:
-    container_name: db
+    container_name: bedouidb
     image: mysql:8.0
     restart: unless-stopped
     environment:
