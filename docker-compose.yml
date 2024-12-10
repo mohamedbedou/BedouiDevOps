@@ -1,31 +1,14 @@
 version: "3.8"
 
 services:
-  backend-spring:
-    container_name: backend-spring
-    image: docker.io/bedouimohamed/bedoui:latest
-    build:
-      context: src
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://bedouidb:3306/eventsProject?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: ""
-      SPRING_JPA_HIBERNATE_DDL_AUTO: update
-    ports:
-      - "8087:8087"  # Port mapping for backend Spring Boot
-    depends_on:
-      - bedouidb
-    restart: on-failure
-    networks:
-      - mynetwork
-
-  db:
-    container_name: bedouidb
+  bedouidb:
     image: mysql:8.0
-    restart: unless-stopped
+    container_name: bedouidb
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-      MYSQL_DATABASE: EventDB
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: eventsProject
+      MYSQL_USER: root
+      MYSQL_PASSWORD: rootpassword
     ports:
       - "3306:3306"
     volumes:
@@ -33,8 +16,27 @@ services:
     networks:
       - mynetwork
 
+  backend-spring:
+    container_name: backend-spring
+    image: docker.io/bedouimohamed/bedoui:latest
+    build:
+      context: ./src
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://bedouidb:3306/eventsProject?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: rootpassword
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    ports:
+      - "8087:8087"
+    depends_on:
+      - bedouidb
+    restart: on-failure
+    networks:
+      - mynetwork
+
   prometheus:
     image: prom/prometheus:latest
+    container_name: prometheus
     ports:
       - "9090:9090"
     volumes:
