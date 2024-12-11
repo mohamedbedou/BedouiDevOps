@@ -29,24 +29,7 @@ public class Event implements Serializable {
     @OneToMany(fetch = FetchType.EAGER)
     Set<Logistics> logistics;
 
-    public Set<Participant> getParticipants() {
-        return this.participants;
-    }
 
-    public Set<Logistics> getLogistics() {
-        return this.logistics;
-    }
-
-    public void setLogistics(Set<Logistics> logistics) {
-        this.logistics = logistics;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-    public void setCout(float cout) {
-        this.cout = cout;
-    }
 
 
 }
